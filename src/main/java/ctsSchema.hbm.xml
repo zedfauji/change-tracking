@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	 "-//Hibernate/Hibernate Mapping DTD//EN"
+	 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+	
+	<hibernate-mapping>
+	   <class name="com.wizecommerce.cts.utils.Source" table="source">
+	      <meta attribute="class-description">
+	         This class contains the source, this is table contains data of all the sources. 
+	      </meta>
+	      <id name="sourceId" type="int" column="source_id">
+	         <generator class="native"/>
+	      </id>
+	      <property name="sourceName" column="source_name" type="string"/>
+	      <property name="isActive" column="is_active" type="int"/>
+	      <property name="createdDate" column="created_date" type="date"/>
+	      <property name="lastModifiedDatetime" column="last_modified_datetime" type="date"/>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.SubSource" table="sub_sources">
+	      <meta attribute="class-description">
+	         This class contains the objects mapping for source table, this is master table. 
+	      </meta>
+	      <id name="subSourceId" type="int" column="sub_source_id">
+	         <generator class="native"/>
+	      </id>
+		  <property name="sourceId" column="source_id" type="int"/>
+	      <property name="subSourceName" column="sub_source_name" type="string"/>
+	      <property name="isActive" column="is_active" type="int"/>
+		  <property name="createdDate" column="created_date" type="date"/>
+	      <property name="lastModifiedDatetime" column="last_modified_datetime" type="date"/>
+	      <property name="credentialDetails" column="credential_details" type="string"/>
+		  <property name="adminDate" column="admin_date" type="timestamp"/>  
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.UserSettings" table="user_settings">
+	      <meta attribute="class-description">
+	         This class contains the source, this is table contains data of all the sources. 
+	      </meta>
+	      <id name="id" type="int" column="id">
+	         <generator class="native"/>
+	      </id>
+	      <property name="uId" column="uid" type="int"/>
+	      <property name="recordsPerPage" column="records_per_page" type="int"/>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.ChangeRecord" table="change_record">
+	      <meta attribute="class-description">
+	         This class contains the change records, this is master table. 
+	      </meta>
+	      <id name="crId" type="int" column="cr_id">
+	         <generator class="native"/>
+	      </id>
+	      <property name="sourceName" column="source_name" type="string"/>
+	      <property name="subSourceName" column="sub_source_name" type="string"/>
+	      <property name="description" column="description" type="string"/>
+	      <property name="datetime" column="datetime" type="timestamp"/>
+	      <property name="sourceId" column="source_id" type="int"/>
+	      <property name="subSourceId" column="sub_source_id" type="int"/>
+	      <property name="status" column="status" type="string"/>
+	      <property name="sourceDatetime" column="source_datetime" type="int"/>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.GLUChangeRecord" table="glu_change_record">
+	      <meta attribute="class-description">
+	         This class contains the change records, this is master table. 
+	      </meta>
+	      <id name="crId" type="int" column="glu_id">
+	         <generator class="native"/>
+	      </id>
+		  <property name="crId" column="cr_id" type="int"/>
+	  
+	      <property name="subSourceName" column="sub_source_name" type="string"/>
+		  <property name="details" column="details" type="string"/>
+	      <property name="datetime" column="datetime" type="timestamp"/>
+	      <property name="sourceId" column="source_id" type="int"/>
+	      <property name="subSourceId" column="sub_source_id" type="int"/>
+	      <property name="status" column="status" type="string"/>
+	      <property name="sourceDatetime" column="source_datetime" type="date"/>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.JobDetails" table="QRTZ_JOB_DETAILS">
+	      <meta attribute="class-description">
+	         This class contains the Quartz Job Details table, this is Quartz table.
+	      </meta>
+	      <id name="jobName" type="string" column="JOB_NAME">
+	         <generator class="native"/>
+	      </id>
+	      <many-to-one name="jobTriggers" class="com.wizecommerce.cts.utils.JobTriggers" fetch="select">
+				<column name="jobName" not-null="true" />
+		  </many-to-one>
+	      <property name="schedName" column="SCHED_NAME" type="string"/>
+	      <property name="jobClassName" column="JOB_CLASS_NAME" type="string"/>
+	      <property name="isDurable" column="IS_DURABLE" type="string"/>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.JobTriggers" table="QRTZ_TRIGGERS">
+	      <meta attribute="class-description">
+	         This class contains the Quartz Trigger table, this is Quartz table. 
+	      </meta>
+	      <id name="jobName" type="string" column="JOB_NAME">
+	         <generator class="native"/>
+	      </id>
+	      <property name="triggerName" column="TRIGGER_NAME" type="string"/>
+	      <property name="nextFireTime" column="NEXT_FIRE_TIME" type="long"/>
+	      <property name="prevFireTime" column="PREV_FIRE_TIME" type="long"/>
+	      <property name="startTime" column="START_TIME" type="long"/>
+	      <property name="priority" column="PRIORITY" type="int"/>
+	      <property name="triggerState" column="TRIGGER_STATE" type="string"/>
+	      <set name="JobDetails" table="QRTZ_JOB_DETAILS" inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="jobName" not-null="true" />
+			</key>
+			<one-to-many class="com.wizecommerce.cts.utils.JobDetails" />
+		</set>
+	   </class>
+	   <class name="com.wizecommerce.cts.utils.JobEntry" table="job_entry">
+	      <meta attribute="class-description">
+	         This class contains the source, this is table contains data of all the sources. 
+	      </meta>
+	      <id name="jobId" type="int" column="job_id">
+	         <generator class="native"/>
+	      </id>
+	      <property name="jobName" column="job_name" type="string"/>
+	      <property name="classFactory" column="class_factory" type="string"/>
+	      <property name="jobParams" column="params" type="string"/>
+	      <property name="jobInterval" column="job_interval" type="int"/>
+	      <property name="status" column="status" type="string"/>
+	      <property name="lastRunDate" column="last_run_date" type="date"/>
+	      <property name="isRepeat" column="is_repeat" type="int"/>
+	      <property name="startDate" column="start_date" type="string"/>
+	   </class>
+	</hibernate-mapping>

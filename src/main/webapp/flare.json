@@ -1,0 +1,72 @@
+{
+    "name": "cts",
+    "children": [
+        {
+            "name": "graphs",
+            "children": [
+                {
+                    "name": "axis",
+                    "children": [
+                        {
+                        	"bg" : "#22b24c",
+                            "name": "GLU",
+                            "twoDays": 1302,
+                            "fourHrs": 1000,
+                            "oneDay": 500,
+                            "twelveHrs": 300,
+                            "eightHrs": 150,
+ 							"twoDays_d": 40,
+                            "fourHrs_d": 50,
+                            "oneDay_d": 25,
+                            "twelveHrs_d": 30,
+                            "eightHrs_d": 15
+ 
+                        },
+                        {
+                        	"bg" : "#46BFBD",
+                            "name": "BUGZILLA",
+                            "twoDays": 245,
+                            "fourHrs": 600,
+                            "oneDay": 500,
+                            "twelveHrs": 300,
+                            "eightHrs": 150,
+                            "twoDays_d": 10,
+                            "fourHrs_d": 25,
+                            "oneDay_d": 25,
+                            "twelveHrs_d": 5,
+                            "eightHrs_d": 15
+                        },
+                        {
+                        	"bg" : "#FDB45C",
+                            "name": "EXPERIMENTS",
+                            "twoDays": 652,
+                            "fourHrs": 300,
+                            "oneDay": 500,
+                            "twelveHrs": 300,
+                            "eightHrs": 150,
+                            "twoDays_d": 25,
+                            "fourHrs_d": 15,
+                            "oneDay_d": 25,
+                            "twelveHrs_d": 30,
+                            "eightHrs_d": 10
+                        },
+                        {
+                        	"bg" : "#949FB1",
+                            "name": "DEPLOYMENTS",
+                            "twoDays": 636,
+                            "fourHrs": 200,
+                            "oneDay": 500,
+                            "twelveHrs": 300,
+                            "eightHrs": 150,
+                            "twoDays_d": 25,
+                            "fourHrs_d": 10,
+                            "oneDay_d": 25,
+                            "twelveHrs_d": 30,
+                            "eightHrs_d": 15
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
